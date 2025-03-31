@@ -16,6 +16,18 @@ os.makedirs(compare_images_folder, exist_ok=True)
 # Load original dataset (BostonHousing.csv)
 boston_df = pd.read_csv(os.path.join(data_folder, "BostonHousing.csv"))
 
+# Load X_train_processed.csv and check headers
+train_file_path = os.path.join(data_folder, "X_train_processed.csv")
+train_df = pd.read_csv(train_file_path)
+
+# Print headers
+print("Headers in X_train_processed.csv:", train_df.columns.tolist())
+
+# If headers are numeric, assume first row contains actual headers
+if all(str(col).isdigit() for col in train_df.columns):
+    print("Detected incorrect headers. Using first row as headers.")
+    train_df = pd.read_csv(train_file_path, header=0)
+
 # List of datasets to compare
 datasets_to_compare = [
     "X_train_processed.csv",
