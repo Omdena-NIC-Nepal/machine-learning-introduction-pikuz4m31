@@ -1,0 +1,3 @@
+,0,1,2,3
+Added Columns,log_crim,lstat_sq,tax_to_rm,chas_1
+Removed Columns,medv,chas,,
